@@ -1,0 +1,2 @@
+# SICP
+SICP stands for "Structure and Interpretation of Computer Programs", an important text in Computer Science that deals with the nature of abstraction. These are solutions to exercises given in the text.
