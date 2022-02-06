@@ -9,3 +9,5 @@
 (define (smallest-divisor n)
   (find-divisor n 2))
 (smallest-divisor 4)
+(define (prime? n)
+  (= n (smallest-divisor n)))
