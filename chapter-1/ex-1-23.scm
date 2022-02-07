@@ -1,0 +1,12 @@
+(define (square x)
+  (* x x))
+(define (find-divisor n guess)
+  (cond 
+    ((= 0 (remainder n guess)) guess)
+    ((= 2 guess) (find-divisor n (+ 1 guess)))
+    ((> (square guess) n) n)
+    (else (find-divisor n (+ 2 guess)))))
+(define (smallest-divisor n)
+  (find-divisor n 2))
+(define (prime? n)
+  (= n (smallest-divisor n)))
