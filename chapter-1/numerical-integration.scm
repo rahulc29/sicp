@@ -16,5 +16,5 @@
   (gen-sum pi-term a pi-next b))
 (define (integral f a b dx)
   (define (next a)
-    (+ a (/ dx 2.0)))
-  (* (gen-sum f a next b) (/ dx 2.0)))
+    (+ a dx))
+  (* (gen-sum f a next b) dx))
