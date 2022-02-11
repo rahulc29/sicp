@@ -11,7 +11,7 @@ let isEven x = (x % 2 = 0)
 let rec expModIter a n product modulo = 
     let handleEven () = 
         let square = squareMod a modulo
-        if square = 1 && a <> 1 && a <> (n - 1) then 0 
+        if square = 1 && a <> 1 && a <> (modulo - 1) then 0 
         else square 
     if n = 0 then product 
     elif isEven n then expModIter (handleEven ()) (n / 2) product modulo
