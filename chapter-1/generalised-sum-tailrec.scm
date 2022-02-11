@@ -1,0 +1,10 @@
+(define (sum term a next b)
+  (define (iter a result)
+    (if (> a b)
+	result
+	(iter (next a) (+ result (term a)))))
+  (iter a 0))
+(define (range-sum a b)
+  (define (term x) x)
+  (define (succ x) (+ x 1))
+  (sum term a succ b))
