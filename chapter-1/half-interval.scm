@@ -13,15 +13,23 @@
 ; The final answer returned is the average of 'a' and 'b' for this final range
 ; Since the range is independent of 'f', so is the average of 'a' and 'b'
 (define (close-enough? x y)
-  (< (abs (- x y)) 0.0000001))
+  (< (abs (- x y)) 0.000001))
 (define (average a b)
   (/ (+ a b) 2.0))
 (define (solve f a b)
   (let ((midpoint (average a b)))
     (let ((test-value (f midpoint)))
       (cond
-        ((> a b) '())
         ((close-enough? a b) midpoint)
         ((positive? test-value) (solve f a midpoint))
         ((negative? test-value) (solve f midpoint b))
         (else midpoint)))))
+(define (half-interval-method f a b)
+  (let ((a-value (f a))
+        (b-value (f b)))
+    (cond ((and (negative? a-value) (positive? b-value))
+           (solve f a b))
+          ((and (negative? b-value) (positive? a-value))
+           (solve f b a))
+          (else
+           (error "Values are not of opposite sign" a b)))))
