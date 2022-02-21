@@ -1,0 +1,12 @@
+(define (cont-frac-iter n d i k result)
+  (define (transform-result result i)
+    (/ (n i) (+ result (d i))))
+  (if (= i 0)
+      result
+      (cont-frac-iter n d (- i 1) k (transform-result result (- i 1)))))
+(define (cont-frac n d k)
+  (cont-frac-iter n d (+ k 1) k 0.0))
+(define (inverse-golden-ratio k)
+  (cont-frac (lambda(x) 1.0)
+             (lambda(x) 1.0)
+             k))
