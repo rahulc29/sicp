@@ -1,0 +1,13 @@
+(define (cont-frac-iter n d i k result)
+  (define (transform-result result i)
+    (/ (n i) (+ result (d i))))
+  (if (= i 0)
+      result
+      (cont-frac-iter n d (- i 1) k (transform-result result (- i 1)))))
+(define (cont-frac n d k)
+  (cont-frac-iter n d (+ k 1) k 0.0))
+(define (tan-cf x k)
+  (cont-frac (lambda(i) 
+               (if (= i 1) x (- (* x x))))
+             (lambda(i) (- (* 2 i) 1))
+             k))
