@@ -1,4 +1,24 @@
+(define (close-enough? x y)
+  (<= (abs (- x y)) 0.000001))
+(define (fixed-point-iter f guess)
+  (display guess)
+  (newline)
+  (define next-guess (f guess))
+  (if
+   (close-enough? guess next-guess)
+   next-guess
+   (fixed-point-iter f next-guess)))
+(define (fixed-point f guess)
+  (fixed-point-iter f (f guess)))
+(define dx 0.000001)
 (define (differentiate f dx)
   (lambda(x) 
     (/ (- (f (+ x dx)) (f x)) dx)))
-
+(define identity (differentiate (lambda(x) (/ (* x x) 2.0)) 0.000001))
+(define (newton-transform f)
+  (lambda(x) (- x (/ (f x) ((differentiate f dx) x)))))
+(define (newtons-method f guess)
+  (fixed-point (newton-transform f) guess))
+(define (sqrt-newton x)
+  (newtons-method
+   (lambda(y) (- (* y y) x)) 1.0))
