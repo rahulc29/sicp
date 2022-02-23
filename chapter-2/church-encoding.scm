@@ -1,0 +1,11 @@
+(define (zero)
+  (lambda(f)
+    (lambda(x) x)))
+(define (succ n)
+  (lambda(f)
+    (lambda(x)
+      (f ((n f) x)))))
+(define (church n)
+  (if (= n 0)
+      zero
+      (succ (church (- n 1)))))
