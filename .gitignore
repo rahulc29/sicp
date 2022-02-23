@@ -6,3 +6,4 @@ chapter-*/drracket
 
 .fake
 .ionide
+#*.scm#*#
