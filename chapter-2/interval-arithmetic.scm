@@ -40,3 +40,11 @@
   (make-center-width (c (* c (/ p 100.0)))))
 (define (percent i)
   (/ (length-interval i) 100.0))
+(define one (make-interval 1 1))
+(define (par1 r1 r2)
+  (div-interval (mul-interval r1 r2)
+                (add-interval r1 r2)))
+(define (par2 r1 r2)
+  (div-interval
+   one (add-interval (div-interval one r1)
+                     (div-interval one r2))))
