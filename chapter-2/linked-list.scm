@@ -19,3 +19,4 @@
   (if (null? list)
       list
       (append (my-reverse-append (cdr list)) (cons (car list) '()))))
+
