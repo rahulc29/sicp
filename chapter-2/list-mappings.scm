@@ -1,0 +1,13 @@
+(define (square x)
+  (* x x))
+(define (square-list list)
+  (if (null? list)
+      list
+      (cons (square (car list)) (square-list (cdr list)))))
+(define (square-list-map list)
+  (map square list))
+(define (my-for-each consumer list)
+  (if (null? list)
+      '()
+      (let ((value (consumer (car list))))
+        (my-for-each consumer (cdr list)))))
