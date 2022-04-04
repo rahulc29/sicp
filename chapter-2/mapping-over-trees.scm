@@ -1,0 +1,16 @@
+#lang sicp
+(define (map-tree func tree)
+  (cond
+    ((null? tree) tree)
+    ((not (pair? tree)) (func tree))
+    (else (cons (map-tree func (car tree))
+                (map-tree func (cdr tree))))))
+(define (square-tree tree)
+  (map-tree (lambda (x) (* x x)) tree))
+(define (subsets s)
+  (if (null? s)
+      (list nil)
+      (let ((rest (subsets (cdr s))))
+        (append rest (map (lambda (subset)
+                            (cons (car s) subset))
+                          rest)))))
